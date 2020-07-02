@@ -1,0 +1,85 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void Heapify(int* arr,int n,int i)
+{
+	int l=2*i+1;
+	int r=2*i+2;
+	int smallest=i;
+	
+	if(l<n && arr[l]<arr[i])
+	{
+		smallest=l;
+	}
+	
+	smallest=(r<n && arr[r]<arr[smallest])?r:smallest;
+	
+	if(smallest!=i)
+	{
+		swap(arr[smallest],arr[i]);
+		Heapify(arr,n,smallest);
+	}
+	
+}
+
+void buildHeap(int* arr,int n)
+{
+	for(int i=(n/2)-1;i<=0;i--)
+	{
+		Heapify(arr,n,i);
+	}
+}
+
+
+int main()
+{
+	int t;
+	cin>>t;
+	
+	while(t--)
+	{
+		int m,n;
+		cin>>m>>n;
+		
+		int arr1[m];
+		int arr2[n];
+		
+		for(int i=0;i<m;i++)
+		{
+			cin>>arr1[i];
+		}
+		
+		for(int i=0;i<n;i++)
+		{
+			cin>>arr2[i];
+		}
+		
+		buildHeap(arr2,n);
+		
+		for(int i=0;i<m;i++)
+		{
+			if(arr1[i]>arr2[0])
+			{
+				swap(arr1[i],arr2[0]);
+				Heapify(arr2,n,0);
+			}
+		}
+		
+		sort(arr2,arr2+n);
+		
+		for(int i=0;i<m;i++)
+		{
+			cout<<arr1[i]<<" ";
+		}
+		
+		for(int i=0;i<n;i++)
+		{
+			cout<<arr2[i]<<" ";
+		}
+		
+		cout<<"\n";
+		
+	}
+	return 0;
+	
+}
