@@ -54,8 +54,6 @@ int main()
 			cin>>arr2[i];
 		}
 		
-		buildHeap(arr2,n);
-		
 		for(int i=0;i<m;i++)
 		{
 			if(arr1[i]>arr2[0])

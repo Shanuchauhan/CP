@@ -1,0 +1,74 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int word_break(set<string>dict,int n,string input)
+{
+    int size=input.size();
+
+    if(size==0)
+    {
+        return 1;
+    }
+
+    bool wb[size+1];
+    memset(wb,false,sizeof(wb));
+
+    for(int i=1;i<=size;i++)
+    {
+        if(wb[i]==false && dict.count(input.substr(0,i)))
+        {
+            wb[i]=true;
+        }
+
+        if(wb[i]==true)
+        {
+            if(i==size)
+            {
+                return 1;
+            }
+
+            for(int j=i+1;j<=size;j++)
+            {
+                if(wb[j]==false && dict.count(input.substr(i,j-i)))
+                {
+                    wb[j]=true;
+                }
+
+                if(j==size && wb[j]=true)
+                {
+                    return 1;
+                }
+            }
+
+        }
+    }
+
+    return 0;
+
+}
+
+
+int main()
+{
+    int t;
+    while(t--)
+    {
+        set<string>dict;
+        int n;
+        cin>>n;
+        for(int i=0;i<n;i++)
+        {
+            string a;
+            cin>>a;
+            dict.insert(a);
+        }
+
+        string input;
+        cin>>input;
+
+        cout<<word_break(dict,n,input)<<endl;
+
+
+    }
+}
