@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int minJumps(int* arr, int n)
+{
+    int jumps[n];
+    int min;
+
+    jumps[n-1]=0;
+
+    for(int i=n-2;i>=0;i--)
+    {
+        if(arr[i]==0)
+        {
+            jumps[i]=INT_MAX;
+        }
+        else if(arr[i]>n-1-i)
+        {
+            jumps[i]=1;
+        }
+        else{
+
+            min=INT_MAX;
+
+            for(int j=i+1;j<arr[i]+i && j<n;j++)
+            {
+                if(min>jumps[j])
+                {
+                    min=jumps[j];
+                }
+            }
+
+            if(min!=INT_MAX)
+            {
+                jumps[i]=min+1;
+            }
+            else{
+                jumps[i]=min;
+            }
+
+        }
+    }
+    if(jumps[0]!=INT_MAX)
+    {
+        return jumps[0];
+    }
+    else{
+        return -1;
+    }
+}
+
+int main()
+{
+    int t;
+    cin>>t;
+
+    while(t--)
+    {
+        int n;
+        cin>>n;
+
+        int arr[n];
+        for(int i=0;i<n;i++)
+        {
+            cin>>arr[i];
+        }
+
+        cout<<minJumps(arr,n)<<endl;
+    }
+}
