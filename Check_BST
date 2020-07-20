@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> inTraversal(node* root)
+{
+    stack<node*> s;
+    node* curr=root;
+    vector<int> a;
+
+
+    while(curr!=NULL && s.empty()==false)
+    {
+        while(curr!=NULL)
+        {
+            s.push(curr);
+            curr=curr->left;
+        }
+
+        curr=s.top();
+        s.pop();
+        a.push_back(curr->data);
+
+        curr=curr->right;
+    }
+
+    return a;
+}
+
+bool isBST(node* root)
+{
+    bool flag=false;
+    vector<int> inorder;
+    inorder=inTraversal(root);
+
+    for(auto i=0;i<inorder.size();i++)
+    {
+        if(*i>=*(i+1))
+        {
+            flag=false;
+        }
+    }
+
+    return true;
+}
