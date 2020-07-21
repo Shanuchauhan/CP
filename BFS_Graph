@@ -1,0 +1,36 @@
+vector <int> bfs(vector<int> g[], int N){
+
+    vector<int>answer;
+    bool visited;
+    memset(visited,false,sizeof(visited));
+    queue<int>q;
+
+    int i=0;
+    if(visited[i]==false)
+    {
+        visited[i]=true;
+        answer.push_back(i);
+        queue.push(i);
+    }
+
+    while(queue.empty()!=1)
+    {
+        i=q.front();
+        q.pop();
+        if(visited[i]==false)
+        {
+            visited[i]=true;
+            answer.push_back(i);
+        }
+        for(auto j:g[i])
+        {
+            if(visited[i]==false)
+            {
+                q.push(j);
+            }
+        }
+
+    }
+    return answer;
+
+}
