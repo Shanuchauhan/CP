@@ -9,7 +9,37 @@ int r[8]={-1,1,0,0,1,-1,1,-1};
 int l[8]={0,0,-1,1,1,-1,-1,1};
 
 
-void bog_find(int* s,int i,int j,int n,int m,int depth,int &flag);
+void bog_find(int* s,int i,int j,int n,int m,int depth,int &flag)
+{
+    visited[i][j]=true;
+    int nr,nc;
+    depth++;
+    if(depth==s.length())
+    {
+        arr.insert(s);
+        flag=1;
+        return;
+    }
+    
+    for(int k=0;k<8;k++)
+    {
+        nr=i+r[k];
+        nc=j+l[k];
+        
+        if(nr<0 || nr>n || nc<0 || nc>m)
+        {
+            continue;
+        }
+        if(boggle[nr][nc]==s[depth] && visited[nr][nc]==false)
+        {
+            bog_find(s,nr,nc,n,m,depth,flag);
+            break;
+        }
+    }
+    
+    return;
+    
+}
 
 
 int main()
