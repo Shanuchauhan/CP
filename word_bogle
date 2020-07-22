@@ -1,0 +1,80 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+char boggle[8][8];
+set<string>arr;
+bool visited[8][8];
+
+int r[8]={-1,1,0,0,1,-1,1,-1};
+int l[8]={0,0,-1,1,1,-1,-1,1};
+
+
+void bog_find(int* s,int i,int j,int n,int m,int depth,int &flag);
+
+
+int main()
+{
+    int t;
+    cin>>t;
+    while(t--)
+    {
+        int x;
+        cin>>x;
+
+        string s[x];
+        for(int i=0;i<x;i++)
+        {
+            cin>>s[i];
+        }
+
+        int n,m;
+	    cin>>n>>m;
+	    
+	    for(int i=0;i<n;i++)
+	    {
+	        for(int j=0;j<m;j++)
+	        {
+	            cin>>boggle[i][j];
+	        }
+	    }
+
+        int ctr=0;
+        for(int k=0;k<x;k++)
+        {
+            int flag=0,trp=0;
+            memset(visited,false,sizeof(visited));
+
+            for(int i=0;i<n;i++)
+            {
+                for(int j=0;j<m;j++)
+                {
+                    if(boggle[i][j]==s[k][0])
+                    {
+                        bog_find(s[k],i,j,n,m,0,flag);
+                        trp+=flag;
+                        ctr+=flag;
+                        if(flag==1)
+                        {
+                            break;
+                        }
+                    }
+                }
+                if(trp==1)
+                {
+                    break;
+                }
+            }
+        }
+
+        if(ctr!=1)
+        {
+            cout<<-1<<endl;
+        }
+        for(auto i=arr.begin();i!=arr.end();i++)
+        {
+            cout<<*i<<" ";
+        }
+        cout<<endl;
+
+    }
+}
