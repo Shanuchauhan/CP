@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void lps(string a)
+{
+    int length=s.size();
+    int len=0;
+    int lps[n];
+    lps[0]=0;
+
+    while(i<n)
+    {
+        if(lps[i]==lps[len])
+        {
+            len++;
+            lps[i]=len;
+            i++;
+        }
+        else{
+            if(len!=0)
+            {
+                len=lps[len-1];
+            }
+            else{
+                lps[i]=0;
+                i++;
+            }
+        }
+    }
+    int answer=lps[n-1];
+    if(answer>n/2)
+    {
+        cout<<n/2<<endl;
+    }
+    else{
+        cout<<answer<<endl;
+    }
+}
+
+int main() {
+	int t;
+	cin>>t;
+	while(t--)
+	{
+	    string s;
+	    cin>>s;
+	    lps(s);
+	}
+	return 0;
+}
