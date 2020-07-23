@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void helper(node* temp,int distance,int k)
+{
+
+    if(temp == NULL)
+    {
+        return;
+    }
+
+    if(distance==k)
+    {
+        cout<<temp->data<<endl;
+    }
+
+    helper(temp->left,distance+1,k);
+    helper(temp->right,distance+1,k);
+
+
+}
+
+void printK(node* root,int k)
+{
+    node* temp=root;
+    int distance=0;
+    helper(temp,distance,k);
+}
