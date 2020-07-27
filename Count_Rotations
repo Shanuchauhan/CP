@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>  
+using namespace std; 
+  
+// Function to return the count  
+// of rotations 
+int countRotation(int arr[], int n) 
+{ 
+    for(int i = 1; i < n; i++) 
+    { 
+          
+       // Find the smallest element 
+       if (arr[i] < arr[i - 1]) 
+       { 
+           // Return its index 
+           return i; 
+       } 
+    } 
+      
+    // If array is not 
+    // rotated at all 
+    return 0; 
+} 
+  
+// Driver Code 
+int main() 
+{ 
+    int arr1[] = { 4, 5, 1, 2, 3 }; 
+    int n = sizeof(arr1) / sizeof(int); 
+      
+    cout << countRotation(arr1, n); 
+} 
