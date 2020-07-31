@@ -1,0 +1,51 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	
+	int t;
+	cin>>t;
+	string s="";
+	vector<string>vect;
+	while(t--)
+	{
+	    int n;
+	    cin>>n;
+	    while(n--)
+	    {
+	    	string a;
+	    	cin>>a;
+	    	if(a==" ")
+	    	{
+	    		continue;
+			}
+	    	vect.push_back(a);
+		}
+		
+		sort(vect.begin(),vect.end());
+		
+		string a=vect[0];
+		string b=vect[vect.size()-1];
+		
+		int l=min(a.size(),b.size());
+		int length=0;
+		string answer;
+		answer.clear();
+		for(int i=0;i<l;i++)
+		{
+			if(a[i]!=b[i])
+			{
+				break;
+			}
+			answer.push_back(a[i]);
+		}
+		if(answer.size()==0)
+		cout<<-1<<endl;
+		cout<<answer<<endl;
+		vect.clear();
+		answer.clear();
+	}
+	
+	
+	return 0;
+}
