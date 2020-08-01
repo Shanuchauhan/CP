@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool isIdentical(node* tree1,node* tree2)
+{
+    if(tree1==NULL && tree2==NULL)
+    {
+        return true;
+    }
+    if(tree1==NULL || tree2==NULL)
+    {
+        return false;
+    }
+
+
+    return (tree1->data==tree2->data && isIdentical(tree1->left,tree2->left) && isIdentical(tree1->right,tree2->right));
+}
+
+bool isSubtree(node* tree1,node* tree2)
+{
+    if(tree1==NULL || tree2==NULL)
+    {
+        return false;
+    }
+
+    if(isIdentical(tree1,tree2))
+    {
+        return true;
+    }
+
+    return (isSubtree(tree1->left,tree2) || isSubtree(tree1->right,tree2));
+
+}
