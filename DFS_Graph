@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+vector<int> dfsHelper(vector<int>*result,int* visited,vector<int>g[],int i)
+{
+    if(visited[i]==0)
+    {
+        result.push_back(i);
+    }
+
+    visited[i]=1;
+
+    for(auto i=g[i].start();i!=g[i].end();i++)
+    {
+        if(visited[*i]==0)
+        {
+            dfsHelper(result,visited,g,i);
+        }
+    }
+
+}
+
+vector<int> dfs(vector<int>g[], int N)
+{
+    int visited[N];
+    memset(visited,0,sizeof(visited));
+
+    vector<int>result;
+
+    dfsHelper(&result,visited,g,0);
+    return result;
+
+}
