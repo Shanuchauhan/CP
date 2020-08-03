@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void helper(TreeNode* root,int sum)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+
+    sum+=root->data;
+
+    if(root->left==NULL && root->right ==NULL)
+    {
+        cout<<sum<<" ";
+        return;
+    }
+
+    helper(root->left,sum);
+    helper(root->right,sum);
+}
+
+
+void pathSum(TreeNode* root)
+{
+    helper(root,0);
+}
