@@ -1,0 +1,30 @@
+void helper(Node* root,map<int, vector<Node*>>&m,int l)
+{
+    if(!root)
+    {
+        return;
+    }
+    
+    m[l].push_back(root);    
+    
+    helper(root->left,m,l+1);
+    helper(root->right,m,l+1);
+}
+
+void leftView(Node *root)
+{
+    if(root==NULL)
+    {
+        return;
+    }
+    map<int, vector<Node*>>m;
+    
+    helper(root,m,0);
+    
+    
+    for(auto it=m.begin();it!=m.end();it++)
+    {
+        cout<<it->second[0]->data<<" ";
+    }
+    
+}

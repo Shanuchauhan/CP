@@ -1,0 +1,30 @@
+void inorder(Node* root,Node* &prev,Node* &node1,Node* &node2)
+{
+    if(!root) return;
+    
+    inorder(root->left,prev,node1,node2);
+    
+    if(prev && prev->data>root->data)
+    {
+        if(!node1)
+        {
+            node2=root;
+            node1=prev;
+        }
+        else node2=root;
+    }
+    
+    prev=root;
+   
+    inorder(root->right,prev,node1,node2);
+}
+struct Node *correctBST( struct Node* root )
+{
+    Node* prev=NULL,*node1=NULL,*node2=NULL;
+
+    inorder(root,prev,node1,node2);
+    
+    swap(node1->data,node2->data);
+    
+    return root;
+}
