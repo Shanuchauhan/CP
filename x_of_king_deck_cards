@@ -1,0 +1,27 @@
+bool hasGroupSizeX(vector<int>& deck)
+{
+    map<int,int>m;
+    for(auto i=deck.begin();i!=deck.end();i++)
+    {
+        m[i]++;
+    }
+
+    int x=m.begin().second;
+
+    if(m.size()==1 && x==1)
+    {
+        return false;
+    }
+
+    for(auto i=m.begin();i!=m.end();i++)
+    {
+        int temp=__gcd(x,i.second);
+        if(x%temp!=0 || temp==1)
+        {
+            return false;
+        }
+        x=temp;
+    }
+    return true;
+
+}
